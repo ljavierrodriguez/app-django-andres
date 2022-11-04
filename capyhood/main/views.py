@@ -19,6 +19,9 @@ def home(request):
 def login(request):
     template_name="login.html"
     
+    if request.user.is_authenticated:
+        return redirect('home')
+    
     if not request.POST:
         return render(request, template_name, {})
     
