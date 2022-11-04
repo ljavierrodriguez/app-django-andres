@@ -46,6 +46,9 @@ def logout_view(request):
 def register(request):
     template_name="register.html"
     
+    if request.user.is_authenticated:
+        return redirect('home')
+    
     if not request.POST:
         return render(request, template_name, { "name": "", "username": "", "password": ""})
     
