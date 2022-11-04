@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Bienvenido, {{user.username}}</h1>
+    <a href="{% url 'logout'%}">Salir</a>
+    <p>{{ saludo }}</p>
+
+    <form action="{% url "save_task" %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="label" placeholder="Ingrese Tarea">
+        <button>Guardar</button>
+    </form>
+
+    <table border="1" cellspacing="1" cellpadding="1" width="50%" align="center">
+
+        <tr>
+            <th>Id</th>
+            <th>Label</th>
+            <th>Done</th>
+            <th colspan="2">Action</th>
+        </tr>
+
+        {% for task in tasks %}
+        <tr>
+            <td>{{task.id}}</td>
+            <td>{{task.label}}</td>
+            <td>{% if task.done %} Completed {% else %} No Completed{% endif %}</td>
+            <td>
+                {% if not task.done %}
+                    <a href="{% url "complete_task" task.id %}">Completar</a>
+                {% endif %}
+            </td>
+            <td>
+                <a href="{% url "delete_task" task.id %}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</body>
+</html>
