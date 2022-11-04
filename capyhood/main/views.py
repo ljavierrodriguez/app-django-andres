@@ -16,6 +16,17 @@ def home(request):
     
     return render(request, template_name, { "saludo": "Hola desde django", "tasks": tasks})
 
+def about(request):
+    
+    if not request.user.is_authenticated:
+        return redirect('login')
+    
+    template_name="about.html"
+    
+    tasks = Task.objects.all()
+    
+    return render(request, template_name, { "saludo": "Hola desde django", "tasks": tasks})
+
 def login_view(request):
     template_name="login.html"
     
