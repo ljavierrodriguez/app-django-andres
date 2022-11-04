@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Task
 from accounts.models import User
-from django.contrib.auth import login as django_login, authenticate, logout
+from django.contrib.auth import login, authenticate, logout
 
 # Create your views here.
 
@@ -16,7 +16,7 @@ def home(request):
     
     return render(request, template_name, { "saludo": "Hola desde django", "tasks": tasks})
 
-def login(request):
+def login_view(request):
     template_name="login.html"
     
     if request.user.is_authenticated:
@@ -32,7 +32,7 @@ def login(request):
         user = authenticate(request, username=username, password=password)
         
         if user:
-            django_login(request, user)
+            login(request, user)
             return redirect('home')
         
         return redirect('login')
@@ -43,7 +43,7 @@ def logout_view(request):
     return redirect('login')
 
 
-def register(request):
+def register_view(request):
     template_name="register.html"
     
     if request.user.is_authenticated:
