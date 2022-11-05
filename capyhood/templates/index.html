@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +16,9 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url "about" %}">About</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url "calendar" %}">Calendar</a>
+          </li>
       </ul>
     <h1>Bienvenido, {{user.username}}</h1>
     <a href="{% url 'logout'%}">Salir</a>
@@ -33,6 +37,7 @@
             <th>Id</th>
             <th>Label</th>
             <th>Done</th>
+            <th colspan="2">Date</th>
             <th colspan="2">Action</th>
         </tr>
 
@@ -41,6 +46,8 @@
             <td>{{task.id}}</td>
             <td>{{task.label}}</td>
             <td>{% if task.done %} Completed {% else %} No Completed{% endif %}</td>
+            <td>{{task.start}}</td>
+            <td>{{task.end}}</td>
             <td>
                 {% if not task.done %}
                     <a href="{% url "complete_task" task.id %}">Completar</a>

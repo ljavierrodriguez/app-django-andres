@@ -15,6 +15,9 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url "about" %}">About</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url "calendar" %}">Calendar</a>
+        </li>
       </ul>
     <h1>Bienvenido, {{user.username}}</h1>
     <a href="{% url 'logout'%}">Salir</a>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css">
+</head>
+<body>
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url "home" %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url "about" %}">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url "calendar" %}">Calendar</a>
+        </li>
+      </ul>
+    <h1>Bienvenido, {{user.username}}</h1>
+    <a href="{% url 'logout'%}">Salir</a>
+    <p>{{ saludo }}</p>
+
+    <h1>Calendar</h1>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div id='calendar'></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales-all.js"></script>
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          editable: true,
+          locale: 'es',
+          firstDay: 0,
+          headerToolbar: {
+            center: 'dayGridMonth, timeGridWeek, listWeek' // buttons for switching between views
+          },
+          events: [
+            {
+              id: '1',
+              title: 'Ejemplo de Evento',
+              start: '2022-11-04T10:00',
+              end: '2022-11-04T11:00',
+              backgroundColor: 'green',
+      borderColor: 'green'
+            },
+            {
+              id: '2',
+              title: 'Ejemplo de Evento 2',
+              start: '2022-11-07T10:00',
+              end: '2022-11-11T11:00',
+              backgroundColor: 'green',
+      borderColor: 'green'
+            },
+            {
+              id: '3',
+              title: 'Ejemplo de Evento 3',
+              start: '2022-11-07T21:00',
+              end: '2022-11-09T21:00',
+              backgroundColor: 'green',
+      borderColor: 'green'
+            },
+            {
+              id: '3',
+              title: 'Ejemplo de Evento 3',
+              start: '2022-11-07T21:00',
+              end: '2022-11-18T21:00',
+              backgroundColor: 'green',
+      borderColor: 'green'
+            }
+          ]
+        });
+        calendar.render();
+      });
+
+    </script>
+</body>
+</html>
